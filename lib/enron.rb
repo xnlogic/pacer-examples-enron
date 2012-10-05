@@ -31,6 +31,7 @@ module Pacer
         self.graph = graph if graph
       end
 
+      ##################
       # Example queries:
 
       def number_of_vertices
@@ -46,16 +47,17 @@ module Pacer
         g.v.group_count "type"
       end
 
-      # Simple property filters with route chaining, to find the percentage of internal emailers
+      # Simple property filters with route chaining and a regex, to find the
+      # percentage of internal emailers.
       def percentage_of_enron_email_addresses
-        num_enron_addresses = g.v(type: "Email Address").filter("address =~ /enron.com/").count
+        num_enron_addresses = g.v(type: "Email Address").filter{ |v| v["address"] =~ /enron.com/ }.count
         num_all_addresses = g.v(type: "Email Address").count
         num_enron_addresses / num_all_addresses.to_f
       end
 
       # Example of a lookahead to find heavy e-mailers
       def heavy_use_email_addresses
-        g.v(type: "Email Address").filter{ |v| v.both_e.count >1000 }
+        g.v(type: "Email Address").lookahead(min: 1000){ |v| v.both_e }
       end
 
     end
