@@ -99,6 +99,10 @@ module Pacer
         saucy_messages_from_enron_people.count / saucy_messages.count.to_f
       end
 
+      def price_fixing_messages(route = g)
+        messages(route).filter{ |v| v["body"] =~ /price fix|agree on price/ }
+      end
+
     end
   end
 end
