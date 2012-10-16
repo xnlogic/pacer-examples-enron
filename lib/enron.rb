@@ -67,6 +67,7 @@ module Pacer
         email_addresses(route).filter{ |v| v["address"] =~ /enron.com/ }
       end
 
+
       # Simple property filters with route chaining and a regex, to find the
       # percentage of internal emailers.
       def percentage_of_enron_email_addresses(route = g)
@@ -76,6 +77,26 @@ module Pacer
       # Example of a lookahead to find heavy e-mailers
       def heavy_use_email_addresses(route = g)
         email_addresses(route).lookahead(min: 1000){ |v| v.both_e }
+      end
+
+      def saucy_messages(route = g)
+        messages(route).filter{ |v| v["body"] =~ /slept with|sex|lover|spoon/ }
+      end
+
+      def saucy_messages_from_enron_email(route = g)
+        saucy_messages(route).lookahead { |v| enron_email_addresses(v.in_e('SENT').out_v) }
+      end
+
+      # Only people of interest are represented in the graph as 'Person' nodes.
+      # This method uses a lookahead with route chaining to return a route of
+      # saucy messages which are only *from* these people of interest
+      #
+      def saucy_messages_from_enron_people(route = g)
+        saucy_messages(route).lookahead { |msg_v| people( msg_v.in('SENT').in('USED_EMAIL_ADDRESS') ) }
+      end
+
+      def percentage_of_saucy_messages_from_enron_people(route = g)
+        saucy_messages_from_enron_people.count / saucy_messages.count.to_f
       end
 
     end
