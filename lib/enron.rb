@@ -53,6 +53,16 @@ module Pacer
         route.v(type: "Email Address")
       end
 
+      def messages(route = g)
+        route.v(type: "Message")
+      end
+
+      # This is a route to all Person vertices.
+      # These are the people of interest from the Org. Chart
+      def people(route = g)
+        route.v(type: "Person")
+      end
+
       def enron_email_addresses(route = g)
         email_addresses(route).filter{ |v| v["address"] =~ /enron.com/ }
       end
