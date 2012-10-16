@@ -15,8 +15,10 @@ and
 [Attribute diagram](https://github.com/diehl/Enron-GraphML-Data-Documentation/blob/master/Enron_GraphML_Attributes.jpg)
 for details.
 
-Also, read more about the dataset in [Relationship Identification for Social Network Discovery][cpdiehl-paper]
+Also, read more about the dataset in [Relationship Identification for Social Network Discovery][cpdiehl-paper] and see an interesting summary of the enron dataset from a text-analysis perspective (Thanks luminoso.com!): 
+[Enron: Evil vs Football](http://blog.lumino.so/2011/11/07/enron-evil-versus-football/)
 
+### How We Will Use It
 What we plan to do with this dataset is combine it with some [Natural
 Language
 Processing](http://en.wikipedia.org/wiki/Natural_language_processing)
@@ -24,7 +26,13 @@ and will add metadata to the graph to support answering questions like:
 
 * Who is the angriest communicator
 * Which groups of people are deceiptive in their communications
-* ??
+
+For now though, we have some basic analysis covered:
+
+* How many Email Address, Person and Message vertices are there?
+* What percentage of Email Addresses are enron.com?
+* What percentage of "Saucy" Messages came from Enron Execs.?
+
 
 ## What is covered
 We cover using pacer to:
