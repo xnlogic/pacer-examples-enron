@@ -11,5 +11,5 @@ echo "    Examples are simple methods on this Enron class and the raw graph"
 echo "    is available at enron.g"
 echo ""
 
-jruby -J-Xmx3000m -S irb -r lib/enron
+jirb -r lib/enron
 

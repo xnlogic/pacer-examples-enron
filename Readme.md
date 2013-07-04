@@ -18,6 +18,22 @@ for details.
 Also, read more about the dataset in [Relationship Identification for Social Network Discovery][cpdiehl-paper] and see an interesting summary of the enron dataset from a text-analysis perspective (Thanks luminoso.com!): 
 [Enron: Evil vs Football](http://blog.lumino.so/2011/11/07/enron-evil-versus-football/)
 
+### Setup
+
+* Install [JRuby](http://jruby.org/)
+* Install Pacer and Pacer's Neo4J plugin `gem install pacer pacer-neo4j`
+* Download the enron email dataset:
+
+On Mac/Linux:
+
+Run `script/download_enron_data.sh`
+
+On Windows or if the above script does not work:
+
+Manually [download the .tar.bz2 dataset](http://www.infochimps.com/datasets/enron-email-data-with-manager-subordinate-relationship-metadata)
+and extract the .graphml file to `db/enron_data.graphml`
+
+
 ### How We Will Use It
 What we plan to do with this dataset is combine it with some [Natural
 Language
@@ -46,7 +62,6 @@ We cover using pacer to:
 6. Creating sub-graphs
 7. Moving data from one graphDB to another
 
-[cpdiehl-paper] 
 ### Relationship Identification for Social Network Discovery
 Chris' paper [Relationship Identiﬁcation for Social Network Discovery](http://www.cpdiehl.org/PDF/aaai07-final.pdf)
 offers an approach to calculate nontrivial ego networks from
