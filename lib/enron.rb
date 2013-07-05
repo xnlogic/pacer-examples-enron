@@ -1,6 +1,11 @@
 require 'pathname'
-require 'pacer'
-require 'pacer-neo4j'
+require 'rubygems'
+unless require 'pacer'
+  puts "Missing dependencies: pacer pacer-neo4j"
+end
+unless require 'pacer-neo4j'
+  puts "Missing dependency: pacer-neo4j"
+end
 
 class Enron
 
@@ -13,7 +18,8 @@ class Enron
     def load_data(g = nil, path = DATA_PATH)
       g ||= Pacer.neo4j 'db/enron.graph'
       g.create_key_index :type
-      puts "Loading data in '#{path}' into new graph. This will take several minutes."
+      puts "Loading data in '#{path}' into new graph."
+      puts "This will take several minutes."
       start_time = Time.now
       Pacer::GraphML.import g, path
       puts "Data loaded in #{Time.now - start_time} secs"
@@ -26,7 +32,11 @@ class Enron
   end
 
   def initialize(graph = nil)
-    self.g = graph
+    if graph.is_a? String
+      self.g = Pacer.neo4j graph
+    else
+      self.g = graph
+    end
   end
 
   ##################

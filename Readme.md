@@ -21,7 +21,7 @@ Also, read more about the dataset in [Relationship Identification for Social Net
 ### Setup
 
 * Install [JRuby](http://jruby.org/)
-* Install Pacer and Pacer's Neo4J plugin `gem install pacer pacer-neo4j`
+* Install Pacer and Pacer's Neo4J plugin `jgem install pacer pacer-neo4j`
 * Download the enron email dataset:
 
 On Mac/Linux:
